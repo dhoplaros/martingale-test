@@ -3,13 +3,8 @@ require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.expand_path '../app.rb', __dir__
-
 module RSpecMixin
   include Rack::Test::Methods
-  def app
-    Onfido::Application
-  end
 end
 
 RSpec.configure do |config|
