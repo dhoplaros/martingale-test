@@ -63,7 +63,6 @@ module Martingale
                      max_rounds = DEFAULT_MAX_ROUNDS,
                      number_of_runs = DEFAULT_NUMBER_OF_RUNS,
                      output_file = "out.csv")
-
     if output_file
       f = File.new(output_file, "w")
       f.puts("Rounds,Cash in hand,Next Stake,Max Stake,Max Cash,Best round to stop,Bust?")
