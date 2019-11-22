@@ -44,15 +44,17 @@ module Martingale
       end
     end
 
-    {initial_cash:       initial_cash,
-     initial_stake:      initial_stake,
-     cash_in_hand:       cash_in_hand,
-     next_stake:         current_stake,
-     bet_rounds:         current_round,
-     max_stake:          max_stake,
-     max_cash:           max_cash,
-     best_round_to_stop: best_round_to_stop,
-     bust:               current_stake > cash_in_hand}
+    {
+      initial_cash:       initial_cash,
+      initial_stake:      initial_stake,
+      cash_in_hand:       cash_in_hand,
+      next_stake:         current_stake,
+      bet_rounds:         current_round,
+      max_stake:          max_stake,
+      max_cash:           max_cash,
+      best_round_to_stop: best_round_to_stop,
+      bust:               current_stake > cash_in_hand,
+    }
   end
 
   def self.run_tests(initial_stake = DEFAULT_INITIAL_STAKE,
@@ -61,8 +63,9 @@ module Martingale
                      max_rounds = DEFAULT_MAX_ROUNDS,
                      number_of_runs = DEFAULT_NUMBER_OF_RUNS,
                      output_file = "out.csv")
+
     if output_file
-      f = File.new(output_file, 'w')
+      f = File.new(output_file, "w")
       f.puts("Rounds,Cash in hand,Next Stake,Max Stake,Max Cash,Best round to stop,Bust?")
     else
       puts
@@ -72,12 +75,12 @@ module Martingale
     number_of_runs.times do
       result = run_a_course(initial_stake: initial_stake, initial_cash: initial_cash, american_roulette: american_roulette, max_rounds: max_rounds)
       result_output = "#{result[:bet_rounds]},#{result[:cash_in_hand]},#{result[:next_stake]},#{result[:max_stake]},#{result[:max_cash]},#{result[:best_round_to_stop]},#{result[:bust]}"
-      # if output_file
-        # f.puts(result_output)
-      # else
+      if output_file && f
+        f.puts(result_output)
+      else
         puts result_output
-      # end
+      end
     end
-    # f.close if output_file
+    f.close if output_file && f
   end
 end
