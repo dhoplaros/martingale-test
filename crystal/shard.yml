@@ -1,0 +1,10 @@
+name: shards
+version: 1.2.3
+
+authors:
+  - Demetris Hoplaros <dhoplaros@gmail.com>
+
+description: |
+  Martingale test port in Crystal (Learning exercice)
+
+crystal: 0.32.1
